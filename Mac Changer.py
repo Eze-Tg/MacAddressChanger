@@ -4,6 +4,7 @@ import re
 
 
 def user_input():
+    #Takes user's New input for interface and Mac
     global interface
     global new_mac
 
@@ -13,6 +14,7 @@ def user_input():
 
 
 def change_mac(interface, new_mac):
+    #Uses the subprocess function and the users input from user_input function to change MAC
     print('[+] Changing MAC address for ' + interface + " to " + new_mac)
 
     subprocess.call(["ifconfig", interface, "down"])
@@ -22,6 +24,7 @@ def change_mac(interface, new_mac):
 
 
 def get_current_mac(interface):
+    #checks to confirm if User's Mac Address input is correct.
     ifconfig_result = subprocess.check_output(["ifconfig", interface])
     mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
     if mac_address_search_result:
